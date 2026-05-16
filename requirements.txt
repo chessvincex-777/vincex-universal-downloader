@@ -1,4 +1,0 @@
-yt-dlp
-ffmpeg-python
-fastapi
-uvicorn
