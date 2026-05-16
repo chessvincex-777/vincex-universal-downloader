@@ -21,7 +21,7 @@ export default function Home() {
     setCurrentUrl(url);
     setIsFetchingInfo(true);
     try {
-      const res = await axios.post('/api/info', { url });
+      const res = await axios.post('https://vincex-universal-downloader-production.up.railway.app/api/info', { url });
       setMetadata(res.data);
     } catch (error: any) {
       console.error("Failed to fetch info:", error);
@@ -61,7 +61,7 @@ export default function Home() {
   };
 
   const connectSSEProgress = (id: string, url: string, format: string) => {
-    const sseUrl = `/api/download?url=${encodeURIComponent(url)}&format=${encodeURIComponent(format)}&id=${encodeURIComponent(id)}`;
+    const sseUrl = `https://vincex-universal-downloader-production.up.railway.app/api/download?url=${encodeURIComponent(url)}&format=${encodeURIComponent(format)}&id=${encodeURIComponent(id)}`;
     const eventSource = new EventSource(sseUrl);
 
     // Store reference so we can cancel later
@@ -80,7 +80,7 @@ export default function Home() {
         delete eventSourcesRef.current[id];
 
         // Trigger the native file download via the serve endpoint
-        const downloadUrl = `/api/serve?id=${encodeURIComponent(data.id)}&filename=${encodeURIComponent(data.filename)}`;
+        const downloadUrl = `https://vincex-universal-downloader-production.up.railway.app/api/serve?id=${encodeURIComponent(data.id)}&filename=${encodeURIComponent(data.filename)}`;
         const a = document.createElement('a');
         a.href = downloadUrl;
         a.download = data.filename;
