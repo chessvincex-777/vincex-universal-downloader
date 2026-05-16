@@ -17,7 +17,9 @@ export async function POST(request: Request) {
         const { ytDlpPath } = getBinPaths();
 
         // Execute yt-dlp directly
-        const { stdout } = await execPromise(`"${ytDlpPath}" --dump-json --no-warnings --prefer-free-formats "${url}"`);
+        const { stdout, stderr } = await execPromise(
+  `"${ytDlpPath}" --dump-json --no-warnings --no-playlist "${url}"`
+);
         const output = JSON.parse(stdout);
 
         // Simplify the format data for the frontend
