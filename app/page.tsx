@@ -21,7 +21,10 @@ export default function Home() {
     setCurrentUrl(url);
     setIsFetchingInfo(true);
     try {
-      const res = await axios.post('https://vincex-universal-downloader-production.up.railway.app/api/info', { url });
+      const res = await axios.post(
+  "https://vincex-universal-downloader-production.up.railway.app/api/info",
+  { url }
+);
       setMetadata(res.data);
     } catch (error: any) {
       console.error("Failed to fetch info:", error);
