@@ -20,6 +20,9 @@ export async function POST(request: Request) {
         const { stdout, stderr } = await execPromise(
   `"${ytDlpPath}" --dump-json --no-warnings --no-playlist "${url}"`
 );
+
+console.log("STDERR:", stderr);
+console.log("STDOUT:", stdout);
         const output = JSON.parse(stdout);
 
         // Simplify the format data for the frontend
